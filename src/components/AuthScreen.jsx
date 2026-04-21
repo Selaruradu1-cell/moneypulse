@@ -78,10 +78,11 @@ export default function AuthScreen({ onAuth }) {
     setLoading(false);
     if (err) {
       setError(err.message);
-    } else if (data.user && !data.session) {
-      setMode('verify');
     } else if (data.session) {
       onAuth(data.session, name.trim());
+    } else if (data.user && !data.session) {
+      // If email confirmation is still enabled, show verify screen
+      setMode('verify');
     }
   };
 
