@@ -70,7 +70,10 @@ export default function AuthScreen({ onAuth }) {
     const { data, error: err } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { name: name.trim() } },
+      options: {
+        data: { name: name.trim() },
+        emailRedirectTo: 'https://selaruradu1-cell.github.io/moneypulse/',
+      },
     });
     setLoading(false);
     if (err) {
