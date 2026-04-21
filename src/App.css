@@ -798,6 +798,7 @@ select option { background: #141520; color: var(--ink); }
 }
 
 @media (max-width: 768px) {
+  html, body, #root { overflow-x: hidden; }
   .app {
     grid-template-columns: 1fr;
     padding: 0;
@@ -805,19 +806,23 @@ select option { background: #141520; color: var(--ink); }
     height: auto;
     min-height: 100vh;
     min-height: 100dvh;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
-  /* Shell main — no fixed height on mobile */
-  .shell-main {
-    height: auto;
+  /* Shell main — no fixed height, no clipping on mobile */
+  .glass.shell-main {
+    height: auto !important;
     min-height: 100vh;
     min-height: 100dvh;
-    overflow: visible;
+    overflow: visible !important;
     padding-bottom: 80px;
     border-radius: 0;
+    box-shadow: none;
   }
+  .glass.shell-main::before { display: none; }
   .scroll {
-    overflow: visible;
+    overflow: visible !important;
     flex: none;
   }
 
@@ -851,28 +856,36 @@ select option { background: #141520; color: var(--ink); }
   }
   .nav-icon { width: 24px; height: 24px; font-size: 12px; border-radius: 6px; }
 
-  /* Top bar — simplified for mobile */
+  /* Top bar — stack vertically on mobile */
   .topbar {
     padding: 10px 12px;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
   }
-  .topbar-left { gap: 6px; min-width: 0; flex: 1; }
-  .page-title { font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .page-crumb { font-size: 10px; }
-  .topbar-right { gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .topbar-left { gap: 4px; }
+  .page-title { font-size: 15px; }
+  .page-crumb { font-size: 9px; }
+  .topbar-right {
+    display: flex; gap: 6px; flex-wrap: nowrap;
+    justify-content: flex-start; align-items: center;
+    overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .topbar-right::-webkit-scrollbar { display: none; }
   /* Hide search bar and bell on mobile */
   .topbar .search-pill { display: none; }
   .topbar-right > button[aria-label="notifications"] { display: none; }
   /* Compact month pill */
+  .month-pill { flex-shrink: 0; }
   .month-pill .label { min-width: 80px; font-size: 11px; padding: 0 4px; }
   .month-pill .arrow { width: 24px; height: 24px; }
   /* Compact EUR pill */
-  .eur-rate-pill { font-size: 9px; padding: 2px 3px 2px 6px; gap: 2px; }
+  .eur-rate-pill { flex-shrink: 0; font-size: 9px; padding: 2px 3px 2px 6px; gap: 2px; }
   .eur-rate-label { display: none; }
   .cur-toggle { padding: 2px 6px; font-size: 10px; }
   /* Lang flags */
-  .lang-switcher { gap: 2px; }
+  .lang-switcher { flex-shrink: 0; gap: 2px; }
   .lang-flag { width: 26px; height: 22px; border-radius: 6px; }
 
   /* Page content */
@@ -928,12 +941,12 @@ select option { background: #141520; color: var(--ink); }
   .btn-sm { height: 30px; padding: 0 10px; font-size: 11px; min-height: 30px; }
   .btn-primary, .btn-ghost { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
-  /* Modal — slide up from bottom */
-  .modal-scrim { padding: 0; align-items: flex-end; }
+  /* Modal — slide up from bottom, above tab bar */
+  .modal-scrim { padding: 0; align-items: flex-end; z-index: 200; }
   .modal {
-    width: 100%; padding: 20px 16px calc(env(safe-area-inset-bottom, 0px) + 16px);
+    width: 100%; padding: 20px 16px calc(env(safe-area-inset-bottom, 0px) + 90px);
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    max-height: 90vh; max-height: 90dvh;
+    max-height: 92vh; max-height: 92dvh;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
   .modal h3 { font-size: 16px; }
@@ -982,8 +995,16 @@ select option { background: #141520; color: var(--ink); }
   div[style*="minmax(220px"] { grid-template-columns: 1fr !important; }
   div[style*="minmax(280px"] { grid-template-columns: 1fr !important; }
 
+  /* Panel head mobile stack */
+  .panel-head.mobile-stack {
+    flex-direction: column; align-items: stretch; gap: 8px;
+  }
+
   /* Loans row — stack buttons */
   .row .btn { font-size: 10px; padding: 0 8px; height: 28px; min-height: 28px; }
+
+  /* Prevent text overflow on stat cards */
+  .stat-card > div:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px !important; }
 }
 
 /* ============================================================

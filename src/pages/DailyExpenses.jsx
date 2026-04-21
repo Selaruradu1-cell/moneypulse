@@ -234,17 +234,17 @@ export default function DailyExpenses({ state, setState, lang }) {
       </div>
 
       <div className="glass panel">
-        <div className="panel-head" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <div className="search-pill" style={{ flex: 1, minWidth: 0 }}>
-              <Icon name="search" size={14}/>
-              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t.search_expenses}/>
-            </div>
-            <button className="btn btn-ghost" onClick={() => fileRef.current?.click()} disabled={scanning}>
+        <div className="panel-head mobile-stack">
+          <div className="search-pill" style={{ flex: 1, minWidth: 0 }}>
+            <Icon name="search" size={14}/>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t.search_expenses}/>
+          </div>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <button className="btn btn-ghost" onClick={() => fileRef.current?.click()} disabled={scanning} style={{ flex: 1 }}>
               <Icon name="camera" size={14}/>
-              {scanning ? (lang === 'ro' ? 'Se scanează...' : 'Scanning...') : t.scan_receipt}
+              {scanning ? (lang === 'ro' ? 'Scan...' : 'Scan...') : t.scan_receipt}
             </button>
-            <button className="btn btn-primary" onClick={() => { setPrefill(null); setShowAdd(true); }}><Icon name="plus" size={14}/>{t.add_expense}</button>
+            <button className="btn btn-primary" onClick={() => { setPrefill(null); setShowAdd(true); }} style={{ flex: 1 }}><Icon name="plus" size={14}/>{t.add_expense}</button>
           </div>
         </div>
 
