@@ -147,8 +147,8 @@ export default function Loans({ state, setState, lang }) {
                 <Icon name="x" size={14} />
               </button>
             </div>
-            <form onSubmit={handleAdd}>
-              <div className="field">
+            <form onSubmit={handleAdd} className="form-grid">
+              <div className="field full">
                 <label>{t.loan_to}</label>
                 <input
                   className="input"
@@ -159,9 +159,9 @@ export default function Loans({ state, setState, lang }) {
                 />
               </div>
               <div className="field">
-                <label>{t.loan_amount}</label>
+                <label>{t.loan_amount} (RON)</label>
                 <input
-                  className="input"
+                  className="input num"
                   type="number"
                   min="1"
                   value={amount}
@@ -178,7 +178,7 @@ export default function Loans({ state, setState, lang }) {
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div className="field">
+              <div className="field full">
                 <label>{t.loan_note}</label>
                 <input
                   className="input"
@@ -187,12 +187,12 @@ export default function Loans({ state, setState, lang }) {
                   placeholder={lang === 'ro' ? 'ex: pentru reparația mașinii' : 'e.g. for car repair'}
                 />
               </div>
-              <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
+              <div className="full" style={{ display: 'flex', gap: 10, marginTop: 6 }}>
                 <button type="button" className="btn btn-ghost" onClick={() => setShowAdd(false)} style={{ flex: 1 }}>
                   {t.cancel}
                 </button>
                 <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
-                  {t.save}
+                  <Icon name="check" size={14}/>{t.save}
                 </button>
               </div>
             </form>

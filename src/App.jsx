@@ -191,7 +191,7 @@ function MainApp({ session, onLogout }) {
       case 'analysis':  return <Analysis state={state} lang={lang}/>;
       case 'reports':   return <Reports state={state} lang={lang}/>;
       case 'health':    return <Health state={state} lang={lang}/>;
-      case 'settings':  return <Settings lang={lang} setLang={setLang} accent={accent} setAccent={setAccent}/>;
+      case 'settings':  return <Settings lang={lang} setLang={setLang} accent={accent} setAccent={setAccent} currency={currency} setCurrency={setCurrency}/>;
       default: return null;
     }
   };

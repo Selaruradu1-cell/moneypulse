@@ -19,7 +19,7 @@ export default function Sidebar({ page, setPage, lang, userName, setUserName, on
     { id: 'calendar',  icon: 'calendar' },
     { id: 'income',    icon: 'income' },
     { id: 'fixed',     icon: 'fixed' },
-    { id: 'daily',     icon: 'daily', badge: '12' },
+    { id: 'daily',     icon: 'daily' },
     { id: 'goals',     icon: 'goals' },
     { id: 'loans',     icon: 'loans' },
     { id: 'analysis',  icon: 'analysis' },

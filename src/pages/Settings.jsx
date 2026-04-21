@@ -1,7 +1,7 @@
 import { T } from '../utils/data';
 import { Segment } from '../components/Primitives';
 
-export default function Settings({ lang, setLang, accent, setAccent }) {
+export default function Settings({ lang, setLang, accent, setAccent, currency, setCurrency }) {
   const t = T[lang];
   return (
     <div className="page fade-up">
@@ -27,7 +27,7 @@ export default function Settings({ lang, setLang, accent, setAccent }) {
           </div>
           <div>
             <div style={{ fontSize: 12, color: 'var(--ink-mute)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{lang === 'ro' ? 'Valută' : 'Currency'}</div>
-            <Segment value="RON" onChange={()=>{}} options={[{ value: 'RON', label: 'RON' }, { value: 'EUR', label: 'EUR' }, { value: 'USD', label: 'USD' }]}/>
+            <Segment value={currency} onChange={setCurrency} options={[{ value: 'RON', label: 'RON' }, { value: 'EUR', label: 'EUR' }]}/>
           </div>
         </div>
       </div>
