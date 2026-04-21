@@ -234,14 +234,12 @@ export default function DailyExpenses({ state, setState, lang }) {
       </div>
 
       <div className="glass panel">
-        <div className="panel-head">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div className="search-pill" style={{ minWidth: 260 }}>
+        <div className="panel-head" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div className="search-pill" style={{ flex: 1, minWidth: 0 }}>
               <Icon name="search" size={14}/>
               <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t.search_expenses}/>
             </div>
-          </div>
-          <div style={{ display: 'flex', gap: 8 }}>
             <button className="btn btn-ghost" onClick={() => fileRef.current?.click()} disabled={scanning}>
               <Icon name="camera" size={14}/>
               {scanning ? (lang === 'ro' ? 'Se scanează...' : 'Scanning...') : t.scan_receipt}

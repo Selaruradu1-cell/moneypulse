@@ -24,17 +24,11 @@ function App() {
 
   // Check existing session on mount
   useEffect(() => {
-    console.log('[AUTH] URL hash:', window.location.hash);
-    console.log('[AUTH] URL search:', window.location.search);
-    console.log('[AUTH] Full URL:', window.location.href);
-
-    supabase.auth.getSession().then(({ data: { session }, error }) => {
-      console.log('[AUTH] getSession result:', session ? 'HAS SESSION' : 'NO SESSION', error || '');
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('[AUTH] onAuthStateChange:', event, session ? 'HAS SESSION' : 'NO SESSION');
       setSession(session);
       if (!session) setLoading(false);
     });

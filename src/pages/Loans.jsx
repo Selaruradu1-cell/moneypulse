@@ -139,14 +139,12 @@ export default function Loans({ state, setState, lang }) {
       </div>
 
       {showAdd && (
-        <div className="modal-overlay" onClick={() => setShowAdd(false)}>
+        <div className="modal-scrim" onClick={() => setShowAdd(false)}>
           <div className="glass modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <div>
-                <div className="modal-title">{t.add_loan}</div>
-              </div>
-              <button className="btn btn-ghost btn-icon" onClick={() => setShowAdd(false)}>
-                <Icon name="x" size={16} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 16 }}>
+              <h3>{t.add_loan}</h3>
+              <button className="btn btn-ghost btn-icon btn-sm" onClick={() => setShowAdd(false)}>
+                <Icon name="x" size={14} />
               </button>
             </div>
             <form onSubmit={handleAdd}>
